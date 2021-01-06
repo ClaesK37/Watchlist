@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+a {
+    text-decoration: none;
+    
+}
+a:hover{
+    text-decoration: none;
+    color: brown;
+    
+}
+.registerLink {
+    font-size: 0.8em;
+    color: grey;
+}

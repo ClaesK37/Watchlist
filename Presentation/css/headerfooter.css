@@ -1,0 +1,50 @@
+@charset "UTF-8";
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  text-decoration: none;
+  color: white;
+
+}
+
+ul li{
+  font-size: 1.3em;
+  font-family: 'garamond serif';
+}
+
+header a{
+  text-decoration: none;
+  color: white;
+}
+header a:hover {
+  text-decoration: none;
+  color: white;
+}
+.navTekst {
+  font-size: 1.5em;
+  color: white;
+  padding: 0.5em;
+}
+footer {
+  text-decoration: none;
+  color: white;
+}
+footer a {
+  text-decoration: none;
+  color: white;
+}
+footer a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.btn-outline-dark {
+  margin: 1em 1em 1em 0;
+}
+
+#keuzeMenu {
+  border-bottom: black 2px solid;
+}

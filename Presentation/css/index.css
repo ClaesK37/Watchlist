@@ -1,0 +1,200 @@
+@charset "UTF-8";
+
+h1, h2, h3, h4, h5 {
+    font-family: 'garamond serif';
+}
+.welkom {
+    margin-top: 2em;
+    font-size: 1em;
+    font-family: 'garamond serif';
+
+}
+/*KNOPPEN GENRES*/
+.btn-dark {
+    margin: 0.5em;
+    padding: 0.5em;
+    width: 8em;
+    height: 8em;
+    
+}
+.btn-dark a {
+    text-decoration: none;
+}
+/*KNOPPEN STUDIOS*/
+
+.list-group-flush  a {
+    text-decoration: none;
+    color: black;
+    font-size: 0.8em;
+}
+
+.gekozenProductie {
+    font-style: italic;
+    color: darkolivegreen;
+}
+div table {
+    font-style: normal;
+}
+
+
+/*INDEX PAGINA*/
+.productKader {
+    margin: 1em 0;
+    min-width: 14em;
+    max-width: 18em;
+    height: 16em;
+    overflow: hidden;
+}
+.productImg {
+    width: 12em;
+    height: 12em;
+    min-height: 12em;
+ }
+ 
+.productNaam {
+    max-width: 15em;
+    font-weight: bold;
+    font-size: 0.9em;
+    height: 1.5em;
+    overflow: hidden;
+    margin-left: 0.5em;
+}
+.productNaam a {
+    text-decoration: none;
+    color: black;
+}
+
+/*DETAILPAGINA*/
+#filmdetail {
+    margin-top: 3em;
+    margin-bottom: 8em;
+
+}
+#filmdetail > .row {
+    padding: 1em;
+}
+#filmdetail > h1 {
+    background-color: gray;
+    text-align: center;
+}
+.test > #test {
+    border-bottom: black 1px dashed;
+}
+
+.fa-star {
+    color: darkgoldenrod;
+    font-size: 1.5em;
+}
+#update {
+    color: red;
+}
+.reviewMaken  a {
+    color: green;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+/*FILMSOVERZICHT PAGINA PER GENRE*/
+table {
+    margin: 3em 0 3em 0;
+
+}
+#tabel  a {
+    text-decoration: none;
+    color: black;
+}
+
+.categoryButton div  {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    text-decoration: none;
+    color: black;
+    /*typografie*/
+    font-size: 140%;
+    text-align: top left;
+    /*layout*/
+    float: left;
+    width: 5%;
+    height: 7em;
+    padding: 0.5em 0 0 0.5em;
+    margin: 1em 0.5em;
+
+}
+.Romance {
+    background-image: url('../img/Romance.jpg');
+    background-size: 18%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.Fantasy {
+    background-image: url('../img/Fantasy.jpg');
+    background-size: 18%;
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+.Comedy {
+    background-image: url('../img/Comedy.jpg');
+    background-size: 16%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.Drama {
+        background-image: url('../img/Drama.jpg');
+        background-size: 16%;
+        background-repeat: no-repeat;
+        background-position: center;
+}
+.Triller {
+    background-image: url('../img/Triller.jpg');
+    background-size: 18%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.Mistery {
+    background-image: url('../img/Mistery.jpg');
+    background-size: 18%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.Horror {
+    background-image: url('../img/Horror.jpg');
+    background-size: 13.5%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.ScienceFiction {
+    background-image: url('../img/ScienceFiction.jpg');
+    background-size: 18%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.Adventure {
+    background-image: url('../img/Adventure.jpg');
+    background-size: 15%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.Animation {
+    background-image: url('../img/Animation.jpg');
+    background-size: 15%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.Action {
+    background-image: url('../img/Action.jpg');
+    background-size: 15%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+/*LOGIN*/
+.registerLink {
+    font-size: 0.8em;
+    color: darkgrey;
+    text-decoration: none;
+}
+a .registerLink {
+    text-decoration: none;
+}
