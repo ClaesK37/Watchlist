@@ -14,7 +14,7 @@ if (!isset($_SESSION["gebruiker"])) {
 }
 $gebruiker = unserialize($_SESSION["gebruiker"], ["GebruikersAccount"]);
 ?>
-?>
+
 
 <!-- ACTUAL BODY INDEX -->
 <section class="container">

@@ -1,33 +1,29 @@
 <?php
 //head
 //header
+session_start();
 require_once "header.php";
+require_once 'Entities/GebruikersAccount.php';
 //include CSS Style Sheet for index.php
 echo "<link rel='stylesheet' type='text/css' href='presentation/css/index.css' />";
+$msg = '<div class="alert alert-danger" role="alert">Beste Bezoeker, Gelieve eerst in te loggen aub!</div>';
+if (!isset($_SESSION["gebruiker"])) {
+    print($msg);
+    exit;
+}
+$gebruiker = unserialize($_SESSION["gebruiker"], ["GebruikersAccount"]);
 ?>
+
+
 <!-- ACTUAL BODY INDEX -->
 <section class="container">
-        <div class="welkom">
-            <h3>Gekozen categorie:.</h3>
-        </div>
+    <div class="welkom">
+        <h3>Welkom <?php echo $gebruiker->getEmail();?></h3>
+    </div>
 </section>
 <br>
 <section class="container">
-    <h4></h4>
-    <div class="categoryButton row">
-        <?php
-            $html = '<div class="col ';
-            $html .= str_replace(" ","",$categorie->getNaam());
-            $html .= '">';            
-            $html .= $categorie->getNaam();
-            $html .= '</a></div>';
-            print($html);
-        ?>       
-  </div>
-
-
-    </div>
-    <span>
+    <h4>Gevonden Resultaat</h4>
     <div class="row productenLijst d-flex ">
         <!-- HIER VERSCHIJNEN DE ARTIKELS VAN DE (SUB)CATEGORIE -->
         <table class="table">

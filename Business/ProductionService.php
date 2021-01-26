@@ -29,4 +29,14 @@ class ProductionService {
         $productionDAO = new ProductionDAO;
         $productionDAO->create($naam);
     }
+
+    Public function dePaginas() : array {
+        $productionDAO = new ProductionDAO();
+        $lijst = $productionDAO->paginaVerdeling();
+        return $lijst;
+
+    }
+
+
+    
 }

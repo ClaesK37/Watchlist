@@ -8,7 +8,7 @@ require_once __DIR__.'/../entities/Film.php';
 require_once __DIR__.'/../entities/Categorie.php';
 require_once __DIR__.'/../entities/Production.php';
 
-
+use Exceptions\ActeurBestaatNietException;
 use Exceptions\TitelBestaatException;
 
 class FilmDAO {
@@ -128,6 +128,26 @@ class FilmDAO {
             $film = new Film ((int)$rij["filmId"], $rij["naam"], $rij["jaar"], $rij["duurtijd"], $rij["hoofdacteur"], $rij["hoofdactrice"], (bool)$rij["gezien"]);
             return $film;
         }
+    }
+
+    public function searchByNaam(string $hoofdacteur, string $hoofdactrice) : array {
+        $sql = "select films.filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice, gezien FROM films where hoofdacteur = :hoofdacteur or hoofdactrice = :hoofdactrice order by naam";
+        $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute(array(':hoofdacteur' => $hoofdacteur, ':hoofdactrice' => $hoofdactrice));
+        $resultSet = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (!$resultSet) {
+            throw new ActeurBestaatNietException();
+        } else {
+            $films = array();
+            foreach($resultSet as $rij) {
+                $film = new Film((int)$rij["filmId"], (string)$rij["naam"], $rij["jaar"], (string)$rij["duurtijd"], (string)$rij["hoofdacteur"], (string)$rij["hoofdactrice"], (bool)$rij["gezien"]);
+                array_push($films, $film);
+            }
+        }
+        $dbh = null;
+        return $films;
+     
     }
 
     

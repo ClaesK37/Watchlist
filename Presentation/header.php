@@ -78,7 +78,7 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="./nieuweFilm.php">Nieuwe Film</a></li>
             <li><a class="dropdown-item" href="./nieuweProduction.php">Nieuwe Productie</a></li>
-            <li><a class="dropdown-item" href="#">Zoeken</a></li>
+            <li><a class="dropdown-item" href="./zoeken.php">Zoeken</a></li>
           </ul>
         </div>
     </section>

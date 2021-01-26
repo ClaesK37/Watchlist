@@ -38,4 +38,9 @@ class FilmService {
         return $filmDAO->create($naam, $jaar, $duurtijd, $hoofdacteur, $hoofdactrice, $gezien, $categorieId, $productionId);
     }
 
+    public function getHoofdacteur(string $hoofdacteur, string $hoofdactrice) {
+        $filmDAO = new FilmDAO();
+        return $filmDAO->searchByNaam($hoofdacteur, $hoofdactrice);
+    }
+  
 }
