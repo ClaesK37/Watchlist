@@ -37,6 +37,14 @@ class ProductionService {
 
     }
 
+    Public function totaalRecords() {
+        $productionDAO = new ProductionDAO();
+        $totalRecords = $productionDAO->totaalPaginas();
+        return $totalRecords;
+        
+
+    }
+
 
     
 }

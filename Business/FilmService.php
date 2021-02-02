@@ -42,5 +42,17 @@ class FilmService {
         $filmDAO = new FilmDAO();
         return $filmDAO->searchByNaam($hoofdacteur, $hoofdactrice);
     }
-  
+
+    Public function dePaginas(int $id) : array {
+        $filmDAO = new FilmDAO();
+        $lijst = $filmDAO->paginaVerdeling($id);
+        return $lijst;
+
+    }
+
+    Public function totaalRecords(int $id) {
+        $filmDAO = new FilmDAO();
+        $totalRecords = $filmDAO->totaalPaginas($id);
+        return $totalRecords;
+    }
 }

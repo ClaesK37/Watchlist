@@ -1,7 +1,8 @@
 <?php 
 
 require_once('header.php');
-
+require_once('Data/ProductionDAO.php');
+require_once('Business/ProductionService.php');
 
 //include CSS Style Sheet for index.php
 echo "<link rel='stylesheet' type='text/css' href='presentation/css/index.css' />";
@@ -15,21 +16,8 @@ $offset = ($page-1) * $totaalPerPagina;
 $previous = $page - 1;
 $next = $page + 1;
 $adjacents = "2";
-$sql = "select * from productions";
-$dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
-$stmt = $dbh->query($sql);
-$totalRecords = $stmt->rowcount();
 $totaalPaginas = ceil($totalRecords / $totaalPerPagina);
 $second_last = $totaalPaginas - 1;
-$sql2 = "select * from productions limit $offset, $totaalPerPagina";
-$dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
-$resultSet = $dbh->query($sql2);
-$lijst = array();
-foreach($resultSet as $rij) {
-    $production = new Production((int)$rij["productionId"], $rij["director"]);
-    array_push($lijst, $production);
-}
-$dbh = null;
     
 ?>
 <!-- ACTUAL BODY INDEX -->

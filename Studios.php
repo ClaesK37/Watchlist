@@ -6,5 +6,9 @@ session_start();
 require_once __DIR__.'/Business/ProductionService.php';
 
 $productionService = new ProductionService();
+$totalRecords = $productionService->totaalRecords();
+
+$productionService = new ProductionService();
 $productions = $productionService->dePaginas();
+
 include("presentation/Studios.php");
