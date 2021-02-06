@@ -8,7 +8,6 @@ require_once('Business/CategorieService.php');
 
 //include CSS Style Sheet for index.php
 echo "<link rel='stylesheet' type='text/css' href='presentation/css/index.css' />";
-
 ?>
 <!-- ACTUAL BODY INDEX -->
 <section class="container">
@@ -16,12 +15,11 @@ echo "<link rel='stylesheet' type='text/css' href='presentation/css/index.css' /
             <h3>Gekozen categorie:.</h3>
         </div>
 </section>
-<br>
 <section class="container">
     <h4></h4>
     <div class="categoryButton row">
         <?php
-            $html = '<div class="col ';
+            $html = '<div style="color:darkolivegreen;" class="col ';
             $html .= str_replace(" ","",$categorie->getNaam());
             $html .= '">';            
             $html .= $categorie->getNaam();
@@ -46,9 +44,7 @@ echo "<link rel='stylesheet' type='text/css' href='presentation/css/index.css' /
     $testId = $categorie->getId();
    
     ?>
-
-    </div>
-    <span>
+  
     <div class="row productenLijst d-flex ">
         <!-- HIER VERSCHIJNEN DE ARTIKELS VAN DE (SUB)CATEGORIE -->
         <table class="table">
@@ -84,33 +80,37 @@ echo "<link rel='stylesheet' type='text/css' href='presentation/css/index.css' /
         </div>
          <br>
          <nav aria-label="Page navigation example">   
-        <ul class="pagination justify-content-center">
-                 <li class="page-item">
-                    <?php if($page > 1){
-                    echo "<li class='page-item'><a class='page-link' href='films.php?id=$testId&page=1'>First Page</a></li>";
-                    } ?>
-                </li>
-                                   
-                <li class="page-item" <?php if($page <= 1){ echo "class='disabled'"; } ?>>
-                    <a class='page-link' <?php if($page > 1){ 
-                        echo "href='films.php?id=$testId&page=$previous'";
-                    } ?>>Previous </a>
-                </li>
+            <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        <?php if($page > 1){
+                        echo "<li class='page-item'><a class='page-link' href='films.php?id=$testId&page=1'>First Page</a></li>";
+                        } ?>
+                    </li>
+                                    
+                    <li class="page-item" <?php if($page <= 1){ echo "class='disabled'"; } ?>>
+                        <a class='page-link' <?php if($page > 1){ 
+                            echo "href='films.php?id=$testId&page=$previous'";
+                        } ?>>Previous </a>
+                    </li>
+                        
+                    <li <?php if($page >= $totaalPaginas){
+                    echo "class='disabled'";
+                    } ?>>
+                    <a  class='page-link' <?php if($page < $totaalPaginas) {
+                    echo "href='films.php?id=$testId&page=$next'";
+                    } ?>>Next </a>
+                    </li>
                     
-                <li <?php if($page >= $totaalPaginas){
-                echo "class='disabled'";
-                } ?>>
-                <a  class='page-link' <?php if($page < $totaalPaginas) {
-                echo "href='films.php?id=$testId&page=$next'";
-                } ?>>Next </a>
-                </li>
-                
-                <?php if($page < $totaalPaginas){
-                echo "<li><a class='page-link' href='films.php?id=$testId&page=$totaalPaginas'>Last</a></li>";
-                } ?>
-        </ul>
-    </nav>
+                    <?php if($page < $totaalPaginas){
+                    echo "<li><a class='page-link' href='films.php?id=$testId&page=$totaalPaginas'>Last</a></li>";
+                    } ?>
+            </ul>
+         </nav>
     </div>
+    <br>
+    <button ><a class="terug" href="CategorieKeuze.php">Terug naar Categorieen.</a></button>
+    <br>
+    <p></p>
 </section>
 
 

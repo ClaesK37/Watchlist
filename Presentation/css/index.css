@@ -28,9 +28,8 @@ h1, h2, h3, h4, h5 {
     font-size: 0.8em;
 }
 
-.gekozenProductie {
+#gekozenProductie {
     font-style: italic;
-    color: darkolivegreen;
 }
 div table {
     font-style: normal;
@@ -89,7 +88,7 @@ div table {
     color: red;
 }
 .reviewMaken  a {
-    color: green;
+    color:darkolivegreen;
     font-weight: bold;
     font-size: 1.5em;
 }
@@ -204,3 +203,20 @@ a .registerLink {
 .page-link {
     color: black;
 }
+
+/*ZOEKEN TITEL*/
+.resultaat {
+    text-align: center;
+    border: darkolivegreen 2px solid;
+}
+.resultaat  a {
+  text-decoration: none;
+  color:darkolivegreen;
+  text-align: center;
+  font-size: 1.2em;
+
+}
+.terug {
+    color:darkolivegreen;
+}
+

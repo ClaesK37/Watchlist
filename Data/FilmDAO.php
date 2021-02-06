@@ -10,6 +10,7 @@ require_once __DIR__.'/../entities/Production.php';
 
 use Exceptions\ActeurBestaatNietException;
 use Exceptions\TitelBestaatException;
+use Exceptions\TitelBestaatNietException;
 
 class FilmDAO {
     public function getAll(): Array {
@@ -123,7 +124,7 @@ class FilmDAO {
         $rij = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$rij) {
-            return null;
+            throw new TitelBestaatNietException();
         } else {
             $film = new Film ((int)$rij["filmId"], $rij["naam"], $rij["jaar"], $rij["duurtijd"], $rij["hoofdacteur"], $rij["hoofdactrice"], (bool)$rij["gezien"]);
             return $film;
@@ -184,6 +185,39 @@ class FilmDAO {
         return $totaalRecords;
     }
 
+    public function paginaVerdeling2(int $id) : array {
+        if (isset($_GET["page"]) && $_GET["page"]!="") {
+            $page = $_GET["page"];
+        } else {
+            $page = 1;
+        }
+
+        $totaalPerPagina = 10;
+        $offset = ($page-1) * $totaalPerPagina;
+        $sql = "select films.filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice, gezien FROM films INNER JOIN filmproductions ON films.filmId = filmproductions.filmId where productionId in (select productions.productionId from productions where productions.productionId = :id) order by naam limit $offset, $totaalPerPagina";
+        $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute(array(':id' => $id));
+        $resultSet = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $films = array();
+        if ($resultSet) {
+            foreach($resultSet as $rij) {
+                $film = new Film((int)$rij["filmId"], (string)$rij["naam"], $rij["jaar"], (string)$rij["duurtijd"], (string)$rij["hoofdacteur"], (string)$rij["hoofdactrice"], (bool)$rij["gezien"]);
+                array_push($films, $film);
+            }
+        }
+        $dbh = null;
+        return $films;
+    }
+
+    public function totaalPaginas2(int $id) {
+        $sql = "select films.filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice, gezien FROM films INNER JOIN filmproductions ON films.filmId = filmproductions.filmId where productionId in (select productions.productionId from productions where productions.productionId = :id) order by naam";
+        $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute(array(':id' => $id));
+        $totaalRecords = $stmt->rowcount();
+        return $totaalRecords;
+    }
 
     
 }

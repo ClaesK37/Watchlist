@@ -6,7 +6,7 @@ echo "<link rel='stylesheet' type='text/css' href='/presentation/css/headerfoote
 <footer class="footer" style="background-color: #9A1915;">
     <section class="container">
         <div class="row"> 
-            <div class="col"><h6>Watchlist by Casey &copy;</h6> 
+            <div class="col"><h6>MyMovieList by Casey &copy;</h6> 
                 <address>
                     <i class="fa fa-envelope-o"> </i> mail me: claeskim33@hotmail.com<br>
                     <i class="fa fa-location-arrow"> </i>

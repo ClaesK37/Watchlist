@@ -2,6 +2,7 @@
 //head
 //header
 require_once "header.php";
+
 //include CSS Style Sheet for index.php
 echo "<link rel='stylesheet' type='text/css' href='presentation/css/index.css' />";
 ?>
@@ -11,20 +12,35 @@ echo "<link rel='stylesheet' type='text/css' href='presentation/css/index.css' /
             <h3>Gekozen filmstudio:</h3>
         </div>
 </section>
-<br>
 <section class="container">
-    <div class="gekozenProductie">
-    <h4></h4>
-    <div class="categoryButton row">
-        <?php
-            $html = '<div class="col ';
-            $html .= str_replace(" ","",$production->getNaam());
-            $html .= '">';            
-            $html .= $production->getNaam();
-            $html .= '</a></div>';
-            print($html);
-        ?>       
-  </div>
+  
+   
+        <div id="gekozenProductie" class="categoryButton row">
+            <?php
+                $html = '<div style="color:darkolivegreen;" class="col ';
+                $html .= str_replace(" ","",$production->getNaam());
+                $html .= '">';            
+                $html .= $production->getNaam();
+                $html .= '</a></div>';
+                print($html);
+            ?>       
+        </div>
+    <?php
+        if (isset($_GET["page"]) && $_GET["page"]!="") {
+            $page = $_GET["page"];
+        } else {
+            $page = 1;
+        }
+        $totaalPerPagina = 10;
+        $offset = ($page-1) * $totaalPerPagina;
+        $previous = $page - 1;
+        $next = $page + 1;
+        $adjacents = "2";
+        $totaalPaginas = ceil($totalRecords / $totaalPerPagina);
+        $second_last = $totaalPaginas - 1;
+
+        $testId = $production->getId();
+    ?>
 
     <div class="row productenLijst d-flex ">
         <!-- HIER VERSCHIJNEN DE ARTIKELS VAN DE (SUB)CATEGORIE -->
@@ -52,6 +68,45 @@ echo "<link rel='stylesheet' type='text/css' href='presentation/css/index.css' /
                 <?PHP } ?>
             </tbody>
          </table>
+
+         <br>
+         <div>
+         <strong>Page <?php echo $page." of ".$totaalPaginas; ?></strong>
+         </div>
+        <br>
+        <nav aria-label="Page navigation example">   
+            <ul class="pagination justify-content-center">
+                 <li class="page-item">
+                    <?php if($page > 1){
+                    echo "<li class='page-item'><a class='page-link' href='productions.php?id=$testId&page=1'>First Page</a></li>";
+                    } ?>
+                </li>
+                                   
+                <li class="page-item" <?php if($page <= 1){ echo "class='disabled'"; } ?>>
+                    <a class='page-link' <?php if($page > 1){ 
+                        echo "href='productions.php?id=$testId&page=$previous'";
+                    } ?>>Previous </a>
+                </li>
+                    
+                <li <?php if($page >= $totaalPaginas){
+                echo "class='disabled'";
+                } ?>>
+                <a  class='page-link' <?php if($page < $totaalPaginas) {
+                echo "href='productions.php?id=$testId&page=$next'";
+                } ?>>Next </a>
+                </li>
+                
+                <?php if($page < $totaalPaginas){
+                echo "<li><a class='page-link' href='producions.php?id=$testId&page=$totaalPaginas'>Last</a></li>";
+                } ?>
+            </ul>
+        </nav>
+    </div>
+    <br>
+    <button ><a class="terug" href="studios.php">Terug naar Studios.</a></button>
+    <br>
+    <p></p> 
+
 </section>
 
 

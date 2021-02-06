@@ -46,6 +46,10 @@ echo "<link rel='stylesheet' type='text/css' href='presentation/css/index.css' /
 
          <br>
     </div>
+    <br>
+    <button ><a class="terug" href="zoeken.php">Terug naar Zoeken.</a></button>
+    <br>
+    <p></p>
 </section>
 
 

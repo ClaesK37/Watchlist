@@ -72,9 +72,11 @@ $second_last = $totaalPaginas - 1;
         </ul>
     </nav>
     
-    </div>       
+    </div> 
+     
 
 </section>
+
 
 
 

@@ -14,6 +14,12 @@ $production = $productionService->getProductionById((int)$_GET["id"]);
 if (isset($_GET["id"])) {
     $filmService = new FilmService();
     $films = $filmService->getFilmByProduction((int)$_GET["id"]);
+
+    $filmService = new FilmService();
+    $totalRecords = $filmService->totaalRecords2((int)$_GET["id"]);
+
+    $filmService = new FilmService();
+    $films = $filmService->dePaginas2((int)$_GET["id"]);
     if (empty($films)) {
         print("geen films in deze categorie!");
 

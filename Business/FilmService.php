@@ -18,6 +18,12 @@ class FilmService {
 
     }
 
+    public function getFilmByNaam(string $naam) {
+        $filmDAO = new FilmDAO();
+        return $filmDAO->getByNaam($naam);
+
+    }
+
     public function getFilmByCategorie(int $id) {
         $filmDAO = new FilmDAO();
         return $filmDAO->getByCategorie($id);
@@ -53,6 +59,19 @@ class FilmService {
     Public function totaalRecords(int $id) {
         $filmDAO = new FilmDAO();
         $totalRecords = $filmDAO->totaalPaginas($id);
+        return $totalRecords;
+    }
+
+    Public function dePaginas2(int $id) : array {
+        $filmDAO = new FilmDAO();
+        $lijst = $filmDAO->paginaVerdeling2($id);
+        return $lijst;
+
+    }
+
+    Public function totaalRecords2(int $id) {
+        $filmDAO = new FilmDAO();
+        $totalRecords = $filmDAO->totaalPaginas2($id);
         return $totalRecords;
     }
 }
