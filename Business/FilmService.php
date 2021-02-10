@@ -39,9 +39,9 @@ class FilmService {
         return $filmDAO->getRandom($quantity);
     }
 
-    public function addNewFilm(string $naam, $jaar, string $duurtijd, string $hoofdacteur, string $hoofdactrice, bool $gezien, int $categorieId, int $productionId ) {
+    public function addNewFilm(string $naam, $jaar, string $duurtijd, string $hoofdacteur, string $hoofdactrice, int $categorieId, int $productionId ) {
         $filmDAO = new FilmDAO();
-        return $filmDAO->create($naam, $jaar, $duurtijd, $hoofdacteur, $hoofdactrice, $gezien, $categorieId, $productionId);
+        return $filmDAO->create($naam, $jaar, $duurtijd, $hoofdacteur, $hoofdactrice, $categorieId, $productionId);
     }
 
     public function getHoofdacteur(string $hoofdacteur, string $hoofdactrice) {

@@ -4,6 +4,7 @@ declare(strict_types = 1);
 use Exceptions\ActeurBestaatNietException;
 
 spl_autoload_register();
+session_start();
 
 require_once __DIR__.'/Entities/GebruikersAccount.php';
 require_once __DIR__.'/business/FilmService.php';

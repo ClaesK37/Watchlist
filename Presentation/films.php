@@ -5,6 +5,7 @@ require_once "header.php";
 require_once('Data/FilmDAO.php');
 require_once('Business/FilmService.php');
 require_once('Business/CategorieService.php');
+require_once('Business/GekekenFilmService.php');
 
 //include CSS Style Sheet for index.php
 echo "<link rel='stylesheet' type='text/css' href='presentation/css/index.css' />";
@@ -64,11 +65,28 @@ echo "<link rel='stylesheet' type='text/css' href='presentation/css/index.css' /
                 <td><p class="jaar"><a href="filmdetail.php?id=<?php print ($film->getId());?>"><?php print($film->getNaam()); ?></a></p></td>
                 <td><?php print($film->getHoofdacteur()); ?></p></td>
                 <td><?php print($film->getHoofdactrice()); ?></p></td>
-                <td> <?php if ($film->getGezien() == 1) { ?>
-                    <p><i class="fa fa-check"></i></p>
-                    <?php } ?>
-                </td>
+                
+                <td> 
+                <?php foreach ($gekekenFilms as $gekekenFilm) { ?>
+                    <?php 
+                    if (($gekekenFilm->getGebruikersAccountId() === 1) && ($gekekenFilm->getFilmId() === $film->getId()))  { ?>
+                        <i id="mama" class="fa fa-female"></i>
+                           <?Php 
+                    } elseif (($gekekenFilm->getGebruikersAccountId() === 2) && ($gekekenFilm->getFilmId() === $film->getId())) { ?>
+                        <i id="theo" class="fa fa-male"></i>
+                           <?Php 
+                    } elseif (($gekekenFilm->getGebruikersAccountId() === 3) && ($gekekenFilm->getFilmId() === $film->getId())) { ?>
+                        <i id="papa" class="fa fa-male"></i>
+                            <?php 
+                    } elseif (($gekekenFilm->getGebruikersAccountId() === 4) && ($gekekenFilm->getFilmId() === $film->getId())) { ?>
+                        <i id="leia" class="fa fa-female"></i>
+                            <?php 
+                    }
+                 }    ?> 
+               
+                </td>           
                 </tr>
+              
   
                 <?PHP } ?>
             </tbody>

@@ -14,12 +14,12 @@ use Exceptions\TitelBestaatNietException;
 
 class FilmDAO {
     public function getAll(): Array {
-        $sql = "select filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice, gezien from films";
+        $sql = "select filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice from films";
         $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
         $resultSet = $dbh->query($sql);
         $lijst = array();
         foreach($resultSet as $rij) {
-            $film = new Film((int)$rij["filmId"], (string)$rij["naam"], $rij["jaar"], (string)$rij["duurtijd"], (string)$rij["hoofdacteur"], (string)$rij["hoofdactrice"], (bool)$rij["gezien"]);
+            $film = new Film((int)$rij["filmId"], (string)$rij["naam"], $rij["jaar"], (string)$rij["duurtijd"], (string)$rij["hoofdacteur"], (string)$rij["hoofdactrice"]);
             array_push($lijst, $film);
         }
         $dbh = null;
@@ -27,18 +27,18 @@ class FilmDAO {
     }
     
     public function getById(int $id) {
-        $sql = "select filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice, gezien from films where filmId = :id";
+        $sql = "select filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice from films where filmId = :id";
         $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
         $stmt = $dbh->prepare($sql);
         $stmt->execute(array(':id' => $id));
         $rij = $stmt->fetch(PDO::FETCH_ASSOC);
-        $film = new Film((int)$rij["filmId"], (string)$rij["naam"], $rij["jaar"], (string)$rij["duurtijd"], (string)$rij["hoofdacteur"], (string)$rij["hoofdactrice"], (bool)$rij["gezien"]);
+        $film = new Film((int)$rij["filmId"], (string)$rij["naam"], $rij["jaar"], (string)$rij["duurtijd"], (string)$rij["hoofdacteur"], (string)$rij["hoofdactrice"]);
         $dbh = null;
         return $film;
     }
 
     public function getByCategorie(int $id) : array {
-        $sql = "select films.filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice, gezien FROM films INNER JOIN filmcategorieen ON films.filmId = filmcategorieen.filmId where categorieId in (select categorieen.categorieId from categorieen where categorieen.categorieId = :id) order by naam";
+        $sql = "select films.filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice FROM films INNER JOIN filmcategorieen ON films.filmId = filmcategorieen.filmId where categorieId in (select categorieen.categorieId from categorieen where categorieen.categorieId = :id) order by naam";
         $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
         $stmt = $dbh->prepare($sql);
         $stmt->execute(array(':id' => $id));
@@ -46,7 +46,7 @@ class FilmDAO {
         $films = array();
         if ($resultSet) {
             foreach($resultSet as $rij) {
-                $film = new Film((int)$rij["filmId"], (string)$rij["naam"], $rij["jaar"], (string)$rij["duurtijd"], (string)$rij["hoofdacteur"], (string)$rij["hoofdactrice"], (bool)$rij["gezien"]);
+                $film = new Film((int)$rij["filmId"], (string)$rij["naam"], $rij["jaar"], (string)$rij["duurtijd"], (string)$rij["hoofdacteur"], (string)$rij["hoofdactrice"]);
                 array_push($films, $film);
             }
         }
@@ -55,7 +55,7 @@ class FilmDAO {
     }
 
     public function getByProduction(int $id) : array {
-        $sql = "select films.filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice, gezien FROM films INNER JOIN filmproductions ON films.filmId = filmproductions.filmId where productionId in (select productions.productionId from productions where productions.productionId = :id) order by naam";
+        $sql = "select films.filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice FROM films INNER JOIN filmproductions ON films.filmId = filmproductions.filmId where productionId in (select productions.productionId from productions where productions.productionId = :id) order by naam";
         $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
         $stmt = $dbh->prepare($sql);
         $stmt->execute(array(':id' => $id));
@@ -63,7 +63,7 @@ class FilmDAO {
         $films = array();
         if ($resultSet) {
             foreach($resultSet as $rij) {
-                $film = new Film((int)$rij["filmId"], (string)$rij["naam"], $rij["jaar"], (string)$rij["duurtijd"], (string)$rij["hoofdacteur"], (string)$rij["hoofdactrice"], (bool)$rij["gezien"]);
+                $film = new Film((int)$rij["filmId"], (string)$rij["naam"], $rij["jaar"], (string)$rij["duurtijd"], (string)$rij["hoofdacteur"], (string)$rij["hoofdactrice"]);
                 array_push($films, $film);
             }
         }
@@ -72,15 +72,15 @@ class FilmDAO {
     }
 
     public function getRandom(int $quantity): array {
-        $sql = "select filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice, gezien FROM films order by RAND() limit :quantity";
+        $sql = "select filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice FROM films order by RAND() limit :quantity";
         $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
         $stmt = $dbh->prepare($sql);
         $stmt->bindParam(':quantity', $quantity, PDO::PARAM_INT);
         $stmt->execute();
         $data = $stmt->fetchAll(PDO::FETCH_NUM);
         foreach ($data as $film) {
-            list($filmId, $naam, $jaar, $duurtijd, $hoofdacteur, $hoofdactrice, $gezien) = $film;
-            $films[$filmId] = new Film((int) $filmId, (string)$naam, $jaar, $duurtijd, (string)$hoofdacteur, (string)$hoofdactrice, (bool)$gezien);
+            list($filmId, $naam, $jaar, $duurtijd, $hoofdacteur, $hoofdactrice) = $film;
+            $films[$filmId] = new Film((int) $filmId, (string)$naam, $jaar, $duurtijd, (string)$hoofdacteur, (string)$hoofdactrice);
 
         }
         $this->dbh = null;
@@ -88,20 +88,25 @@ class FilmDAO {
 
     }
 
-    public function create(string $naam, $jaar, string $duurtijd, string $hoofdacteur, string $hoofdactrice, bool $gezien, int $categorieId, int $productionId) {
-        $bestaandFilm = $this->getByNaam($naam);
-        if (!is_null($bestaandFilm)) {
-            throw new TitelBestaatException();
-        }
+    public function create(string $naam, $jaar, string $duurtijd, string $hoofdacteur, string $hoofdactrice, int $categorieId, int $productionId) {
+        $sql = "select filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice from films where naam = :naam";
+        $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute(array(':naam' =>$naam));
+        $rij = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $sql1 = "insert into films (naam, jaar, duurtijd, hoofdacteur, hoofdactrice, gezien) values (:naam, :jaar, :duurtijd, :hoofdacteur, :hoofdactrice, :gezien)";
+        if ($rij) {
+            throw new TitelBestaatException();
+        } 
+        
+        $sql1 = "insert into films (naam, jaar, duurtijd, hoofdacteur, hoofdactrice) values (:naam, :jaar, :duurtijd, :hoofdacteur, :hoofdactrice)";
         $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
         $stmt = $dbh->prepare($sql1);
-        $stmt->execute(array(':naam' => $naam, ':jaar' => $jaar, ':duurtijd' => $duurtijd, ':hoofdacteur' => $hoofdacteur, ':hoofdactrice' => $hoofdactrice, ':gezien' => $gezien));
+        $stmt->execute(array(':naam' => $naam, ':jaar' => $jaar, ':duurtijd' => $duurtijd, ':hoofdacteur' => $hoofdacteur, ':hoofdactrice' => $hoofdactrice));
         $filmId = $dbh->lastInsertId();
         $dbh = null;
         //$film = new Film ((int)$filmId, $naam, $jaar, $duurtijd, $hoofdacteur, $hoofdactrice, $gezien);
-       // return $film;
+        // return $film;
         $sql = "insert into filmcategorieen (categorieId, filmId) values (:categorieId, :filmId)";
         $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
         $stmt = $dbh->prepare($sql);
@@ -112,12 +117,11 @@ class FilmDAO {
         $stmt = $dbh->prepare($sql);
         $stmt->execute(array(':filmId' => $filmId, ':productionId' => $productionId));
         $dbh = null;
-
-
+        
     }
 
     public function getByNaam(string $naam) : ?Film {
-        $sql = "select filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice, gezien from films where naam = :naam";
+        $sql = "select filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice from films where naam = :naam";
         $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
         $stmt = $dbh->prepare($sql);
         $stmt->execute(array(':naam' =>$naam));
@@ -126,13 +130,13 @@ class FilmDAO {
         if (!$rij) {
             throw new TitelBestaatNietException();
         } else {
-            $film = new Film ((int)$rij["filmId"], $rij["naam"], $rij["jaar"], $rij["duurtijd"], $rij["hoofdacteur"], $rij["hoofdactrice"], (bool)$rij["gezien"]);
+            $film = new Film ((int)$rij["filmId"], $rij["naam"], $rij["jaar"], $rij["duurtijd"], $rij["hoofdacteur"], $rij["hoofdactrice"]);
             return $film;
         }
     }
 
     public function searchByNaam(string $hoofdacteur, string $hoofdactrice) : array {
-        $sql = "select films.filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice, gezien FROM films where hoofdacteur = :hoofdacteur or hoofdactrice = :hoofdactrice order by naam";
+        $sql = "select films.filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice FROM films where hoofdacteur = :hoofdacteur or hoofdactrice = :hoofdactrice order by naam";
         $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
         $stmt = $dbh->prepare($sql);
         $stmt->execute(array(':hoofdacteur' => $hoofdacteur, ':hoofdactrice' => $hoofdactrice));
@@ -142,7 +146,7 @@ class FilmDAO {
         } else {
             $films = array();
             foreach($resultSet as $rij) {
-                $film = new Film((int)$rij["filmId"], (string)$rij["naam"], $rij["jaar"], (string)$rij["duurtijd"], (string)$rij["hoofdacteur"], (string)$rij["hoofdactrice"], (bool)$rij["gezien"]);
+                $film = new Film((int)$rij["filmId"], (string)$rij["naam"], $rij["jaar"], (string)$rij["duurtijd"], (string)$rij["hoofdacteur"], (string)$rij["hoofdactrice"]);
                 array_push($films, $film);
             }
         }
@@ -160,7 +164,7 @@ class FilmDAO {
 
         $totaalPerPagina = 10;
         $offset = ($page-1) * $totaalPerPagina;
-        $sql = "select films.filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice, gezien FROM films INNER JOIN filmcategorieen ON films.filmId = filmcategorieen.filmId where categorieId in (select categorieen.categorieId from categorieen where categorieen.categorieId = :id) order by naam limit $offset, $totaalPerPagina";
+        $sql = "select films.filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice FROM films INNER JOIN filmcategorieen ON films.filmId = filmcategorieen.filmId where categorieId in (select categorieen.categorieId from categorieen where categorieen.categorieId = :id) order by naam limit $offset, $totaalPerPagina";
         $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
         $stmt = $dbh->prepare($sql);
         $stmt->execute(array(':id' => $id));
@@ -168,7 +172,7 @@ class FilmDAO {
         $films = array();
         if ($resultSet) {
             foreach($resultSet as $rij) {
-                $film = new Film((int)$rij["filmId"], (string)$rij["naam"], $rij["jaar"], (string)$rij["duurtijd"], (string)$rij["hoofdacteur"], (string)$rij["hoofdactrice"], (bool)$rij["gezien"]);
+                $film = new Film((int)$rij["filmId"], (string)$rij["naam"], $rij["jaar"], (string)$rij["duurtijd"], (string)$rij["hoofdacteur"], (string)$rij["hoofdactrice"]);
                 array_push($films, $film);
             }
         }
@@ -177,7 +181,7 @@ class FilmDAO {
     }
 
     public function totaalPaginas(int $id) {
-        $sql = "select films.filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice, gezien FROM films INNER JOIN filmcategorieen ON films.filmId = filmcategorieen.filmId where categorieId in (select categorieen.categorieId from categorieen where categorieen.categorieId = :id) order by naam";
+        $sql = "select films.filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice FROM films INNER JOIN filmcategorieen ON films.filmId = filmcategorieen.filmId where categorieId in (select categorieen.categorieId from categorieen where categorieen.categorieId = :id) order by naam";
         $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
         $stmt = $dbh->prepare($sql);
         $stmt->execute(array(':id' => $id));
@@ -194,7 +198,7 @@ class FilmDAO {
 
         $totaalPerPagina = 10;
         $offset = ($page-1) * $totaalPerPagina;
-        $sql = "select films.filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice, gezien FROM films INNER JOIN filmproductions ON films.filmId = filmproductions.filmId where productionId in (select productions.productionId from productions where productions.productionId = :id) order by naam limit $offset, $totaalPerPagina";
+        $sql = "select films.filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice FROM films INNER JOIN filmproductions ON films.filmId = filmproductions.filmId where productionId in (select productions.productionId from productions where productions.productionId = :id) order by naam limit $offset, $totaalPerPagina";
         $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
         $stmt = $dbh->prepare($sql);
         $stmt->execute(array(':id' => $id));
@@ -202,7 +206,7 @@ class FilmDAO {
         $films = array();
         if ($resultSet) {
             foreach($resultSet as $rij) {
-                $film = new Film((int)$rij["filmId"], (string)$rij["naam"], $rij["jaar"], (string)$rij["duurtijd"], (string)$rij["hoofdacteur"], (string)$rij["hoofdactrice"], (bool)$rij["gezien"]);
+                $film = new Film((int)$rij["filmId"], (string)$rij["naam"], $rij["jaar"], (string)$rij["duurtijd"], (string)$rij["hoofdacteur"], (string)$rij["hoofdactrice"]);
                 array_push($films, $film);
             }
         }
@@ -211,7 +215,7 @@ class FilmDAO {
     }
 
     public function totaalPaginas2(int $id) {
-        $sql = "select films.filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice, gezien FROM films INNER JOIN filmproductions ON films.filmId = filmproductions.filmId where productionId in (select productions.productionId from productions where productions.productionId = :id) order by naam";
+        $sql = "select films.filmId, naam, jaar, duurtijd, hoofdacteur, hoofdactrice FROM films INNER JOIN filmproductions ON films.filmId = filmproductions.filmId where productionId in (select productions.productionId from productions where productions.productionId = :id) order by naam";
         $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
         $stmt = $dbh->prepare($sql);
         $stmt->execute(array(':id' => $id));

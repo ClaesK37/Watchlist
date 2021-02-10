@@ -13,8 +13,8 @@ if (!isset($_SESSION["gebruiker"])) {
 $gebruiker = unserialize($_SESSION["gebruiker"], ["GebruikersAccount"]);
 
 
-var_dump($gebruiker);
-var_dump($gebruiker->getId());
+//var_dump($gebruiker);
+//var_dump($gebruiker->getId());
 
 if ((isset($_GET['action'])) && ($_GET['action'] === 'process')) {
     $PersoonService = new PersoonService();

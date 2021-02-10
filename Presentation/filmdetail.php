@@ -12,6 +12,7 @@ echo "<link rel='stylesheet' type='text/css' href='presentation/css/index.css' /
             <h3></h3>
         </div>
 </section>
+
 <br>
 <div class="container" id="filmdetail">
   <h1>Filmdetail!</h1>
@@ -38,16 +39,21 @@ echo "<link rel='stylesheet' type='text/css' href='presentation/css/index.css' /
         <div class="col-6 col-md-4"><?php print($film->getHoofdactrice());?></div>
     </div>
     <div class="row">
-        <div class="col-6 col-md-4"></div>
-        <div class="col-6 col-md-4"></div>
+        <div class="col-6 col-md-4"><b>Toevoegen aan Wishlist</b></div>
+        <div class="col-6 col-md-4"><b>Toevoegen aan Gezien</b></div>
         <div class="col-6 col-md-4"></div>
     </div>
     <div class="row">
-        <div class="col-6 col-md-4"></div>
-        <div class="col-6 col-md-4"></div>
+        <div class="col-6 col-md-4">
+          <p class="reviewMaken"><a href="wishlist.php?id=<?php print ($film->getId());?>"><i class="fa fa-heart"></i></a></p>
+        </div>
+        <div class="col-6 col-md-4">
+          <p class="reviewMaken"><a href="gezien.php?id=<?php print ($film->getId());?>"><i class="fa fa-eye"></i></a></p>
+        </div>
         <div class="col-6 col-md-4"></div>
     </div>
     <br>
+    
 
     <!-- Columns are always 50% wide, on mobile and desktop -->
   <h1>Reviews!</h1>

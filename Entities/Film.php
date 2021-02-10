@@ -11,16 +11,14 @@ class Film {
     private string $duurtijd;
     private string $hoofdacteur;
     private string $hoofdactrice;
-    private bool $gezien;
 
-    public function __construct(int $filmId, string $naam, $date, string $duurtijd, string $hoofdacteur, string $hoofdactrice, bool $gezien) {
+    public function __construct(int $filmId, string $naam, $date, string $duurtijd, string $hoofdacteur, string $hoofdactrice) {
         $this->filmId = $filmId;
         $this->naam = $naam;
         $this->date = $date;
         $this->duurtijd = $duurtijd;
         $this->hoofdacteur = $hoofdacteur;
         $this->hoofdactrice = $hoofdactrice;
-        $this->gezien = $gezien;
     }
 
     public function getId(): int {
@@ -47,10 +45,6 @@ class Film {
         return $this->hoofdactrice;
     }
 
-    public function getGezien(): bool {     
-        return $this->gezien;
-    }
-
     public function setNaam(string $naam) {
         $this->naam = $naam;
     }
@@ -69,10 +63,6 @@ class Film {
 
     public function setHoofdactrice(string $hoofdactrice) {     
         $this->hoofdactrice = $hoofdactrice;
-    }
-
-    public function setGezien(bool  $gezien) {     
-        $this->gezien = $gezien;
     }
 
 }

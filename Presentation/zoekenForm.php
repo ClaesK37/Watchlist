@@ -1,7 +1,7 @@
 <?php
 //head
 //header
-session_start();
+
 require_once "header.php";
 require_once 'Entities/GebruikersAccount.php';
 //include CSS Style Sheet for index.php

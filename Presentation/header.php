@@ -31,15 +31,6 @@
                       <li class="nav-item">
                         <a class="nav-link" href="./Studios.php">Studios</a>
                       </li>
-                      <!--<li class="nav-item">
-                        <a class="nav-link" href="./nieuweFilm.php">Nieuwe Film</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="./nieuweProduction.php">Nieuwe Productie</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="">Zoeken</a>
-                      </li>-->
                     </ul>
                  </div>
 

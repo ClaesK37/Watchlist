@@ -187,6 +187,22 @@ table {
     background-position: center;
 }
 
+#mama {
+    color: red;
+    font-size: 1.3em;
+}
+#theo {
+    color: rgb(218, 203, 6);
+    font-size: 1.3em;
+}
+#papa {
+    color: blue;
+    font-size: 1.3em;
+}
+#leia {
+    color: rgb(228, 43, 74);
+    font-size: 1.3em;
+}
 
 /*LOGIN*/
 .registerLink {
@@ -218,5 +234,21 @@ a .registerLink {
 }
 .terug {
     color:darkolivegreen;
+}
+
+/* wishlist */
+
+#wishlist > h1 {
+    background-color: gray;
+    text-align: center;
+}
+ 
+.table-striped{
+    border: black 1px;
+
+}
+
+.verwijder {
+    color: red;
 }
 

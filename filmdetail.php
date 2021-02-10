@@ -6,6 +6,7 @@ require_once __DIR__.'/business/FilmService.php';
 require_once __DIR__.'/business/CategorieService.php';
 //require_once __DIR__.'/business/ProductionService.php';
 require_once __DIR__.'/business/ReviewService.php';
+require_once __DIR__.'/business/WishlistService.php';
 
 
 $filmService = new FilmService();
@@ -26,6 +27,8 @@ if ((isset($_GET['action'])) && ($_GET['action'] === 'process')) {
     exit();
 
 }
+
+
 
 //$production = $productionService->getProductionById($filmId);
 
