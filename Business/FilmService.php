@@ -18,6 +18,12 @@ class FilmService {
 
     }
 
+    public function getFilmByNaam(string $naam) {
+        $filmDAO = new FilmDAO();
+        return $filmDAO->getByNaam($naam);
+
+    }
+
     public function getFilmByCategorie(int $id) {
         $filmDAO = new FilmDAO();
         return $filmDAO->getByCategorie($id);
@@ -33,9 +39,39 @@ class FilmService {
         return $filmDAO->getRandom($quantity);
     }
 
-    public function addNewFilm(string $naam, $jaar, string $duurtijd, string $hoofdacteur, string $hoofdactrice, bool $gezien, int $categorieId, int $productionId ) {
+    public function addNewFilm(string $naam, $jaar, string $duurtijd, string $hoofdacteur, string $hoofdactrice, int $categorieId, int $productionId ) {
         $filmDAO = new FilmDAO();
-        return $filmDAO->create($naam, $jaar, $duurtijd, $hoofdacteur, $hoofdactrice, $gezien, $categorieId, $productionId);
+        return $filmDAO->create($naam, $jaar, $duurtijd, $hoofdacteur, $hoofdactrice, $categorieId, $productionId);
     }
 
+    public function getPersonName(string $PersonName) {
+        $filmDAO = new FilmDAO();
+        return $filmDAO->searchByNaam($PersonName);
+    }
+
+    Public function dePaginas(int $id) : array {
+        $filmDAO = new FilmDAO();
+        $lijst = $filmDAO->paginaVerdeling($id);
+        return $lijst;
+
+    }
+
+    Public function totaalRecords(int $id) {
+        $filmDAO = new FilmDAO();
+        $totalRecords = $filmDAO->totaalPaginas($id);
+        return $totalRecords;
+    }
+
+    Public function dePaginas2(int $id) : array {
+        $filmDAO = new FilmDAO();
+        $lijst = $filmDAO->paginaVerdeling2($id);
+        return $lijst;
+
+    }
+
+    Public function totaalRecords2(int $id) {
+        $filmDAO = new FilmDAO();
+        $totalRecords = $filmDAO->totaalPaginas2($id);
+        return $totalRecords;
+    }
 }

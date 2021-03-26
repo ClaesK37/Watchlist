@@ -17,7 +17,7 @@ require_once __DIR__.'/exceptions/exceptions.php';
 if (isset($_GET["action"]) && ($_GET["action"] === "process")) {
     try{
         $filmSvc = new FilmService();
-        $filmSvc->addNewFilm((string)$_POST["txtNaam"], $_POST["txtJaar"], (string)$_POST["txtDuurtijd"], (string)$_POST["txtHoofdacteur"], (string)$_POST["txtHoofdactrice"], (bool)$_POST["txtGezien"], (int)$_POST["selCategorie"], (int)$_POST["selProduction"]);
+        $filmSvc->addNewFilm((string)$_POST["txtNaam"], $_POST["txtJaar"], (string)$_POST["txtDuurtijd"], (string)$_POST["txtHoofdacteur"], (string)$_POST["txtHoofdactrice"], (int)$_POST["selCategorie"], (int)$_POST["selProduction"]);
         header("location: ./index.php");
         exit(0);
     } catch (TitelBestaatException $ex) {

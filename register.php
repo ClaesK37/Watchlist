@@ -29,7 +29,7 @@ if (isset($_POST["btnRegistreer"])) {
             $paswoordHerhaal);
             $gebruiker = $gebruiker->register();
             $_SESSION["gebruiker"] = serialize($gebruiker);
-            header('Location: profiel.php');
+            header('Location: gegevens.php');
         } catch (OngeldigEmailadresException $e) {
             $error .= "Het ingevulde e-mailadres is geen geldig e-mailadres.<br>";
         } catch (WachtwoordenKomenNietOvereenException $e) {

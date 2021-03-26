@@ -67,12 +67,7 @@ $gebruiker = unserialize($_SESSION["gebruiker"], ["GebruikersAccount"]);
                                 <input type="text" name="txtHoofdactrice" />
                             </td>
                         </tr>
-                        <tr>
-                            <td>Gezien:</td>
-                            <td>
-                                <input type="checkbox" name="txtGezien" />
-                            </td>
-                        </tr>           
+         
                         
                         <tr>
                         <td>Categorie:</td>

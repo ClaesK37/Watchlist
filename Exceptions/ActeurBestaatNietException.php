@@ -5,6 +5,6 @@ namespace Exceptions;
 
 use Exception;
 
-class ProductionBestaatException extends Exception {
+class ActeurBestaatNietException extends Exception {
     
 }

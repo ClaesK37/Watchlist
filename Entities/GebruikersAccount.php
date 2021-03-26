@@ -2,7 +2,8 @@
 declare(strict_types=1);
 
 require_once 'Data/DBConfig.php';
-use Exceptions\Exceptions;
+require_once 'Exceptions/Exceptions.php';
+
 
 class GebruikersAccount {
     private $gebruikersAccountId;

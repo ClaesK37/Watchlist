@@ -12,6 +12,7 @@ echo "<link rel='stylesheet' type='text/css' href='presentation/css/index.css' /
     </div>
 </section>
 <br>
+
 <section id="test" class="container clearfix">
     <h4>Find out more:</h4>
     <div class="row productenLijst d-flex justify-content-center">
@@ -21,14 +22,6 @@ echo "<link rel='stylesheet' type='text/css' href='presentation/css/index.css' /
             <div class="productKader">
                 <div><img src="presentation/img/gear.jpg" alt="filmalt" class="filmalt"></div>
                 <p class="productNaam midden"><a href="filmdetail.php?id=<?php print ($film->getId());?>"><?php print($film->getNaam());?> <i class="fa fa-play"></i></a></p>
-                <p class="gezien">
-                    <?php if ($film->getGezien() == 1) {
-                        print("Reeds gezien");
-                    } else {
-                        print("Nog niet gezien");
-                    }
-                    ?>
-                </p>
             </div>
         </div>
         <?php } ?>

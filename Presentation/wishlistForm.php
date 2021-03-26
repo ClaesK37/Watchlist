@@ -25,23 +25,19 @@ $gebruiker = unserialize($_SESSION["gebruiker"], ["GebruikersAccount"]);
 <br>
 <div class="container">
 
-    <form action="review.php?action=process" method="POST">
-                <h4>Post a review</h4>
+    <form action="wishlist.php?action=addToWishlist" method="POST">
+                <h4>Add to wishlist</h4>
                 <div class="form-group">
-                    <label for="nickname">Nickname</label>
-                    <input type="text" class="form-control" name="nickname" aria-describedby="nickname" required>
-                </div>
-                <div class="form-group">
-                    <label for="score">Score</label>
-                    <input type="number" class="form-control" min="1" max="10" name="score" required>
+                    <label for="nickname">Gebruiker</label>
+                    <input type="text" class="form-control" value="<?= $gebruiker->getId();?>" name="gebruikersAccountId" aria-describedby="gebruiker" required>
                 </div>
                 <div class="form-group">
                     <label for="datum">Date</label>
                     <input type="date" class="form-control" name="datum" required>
                 </div>
                 <div class="form-group">
-                    <label for="commentaar">Commentaar</label>
-                    <input type="text" class="form-control" name="commentaar" maxlength="100" required>
+                    <label for="datum">Reden</label>
+                    <input type="text" class="form-control" name="reden" required>
                 </div>
                 <div class="form-group">
                     <input type="hidden" name="filmId" value="<?= $film->getId(); ?>">

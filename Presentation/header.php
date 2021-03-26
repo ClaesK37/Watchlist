@@ -13,13 +13,13 @@
     
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
-    <title>Watchlist</title>
+    <title>MyMovieList</title>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #9A1915;">
           <div class="container">
-            <span class="navbar-brand mb-0 h1"><a class="navbar-brand" href="./" style="color: #FFFFFF; font-size: 1.5em">Watchlist</a></span>
+            <span class="navbar-brand mb-0 h1"><a class="navbar-brand" href="./" style="color: #FFFFFF; font-size: 1.5em">MyMovieList</a></span>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -31,15 +31,6 @@
                       <li class="nav-item">
                         <a class="nav-link" href="./Studios.php">Studios</a>
                       </li>
-                      <!--<li class="nav-item">
-                        <a class="nav-link" href="./nieuweFilm.php">Nieuwe Film</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="./nieuweProduction.php">Nieuwe Productie</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="">Zoeken</a>
-                      </li>-->
                     </ul>
                  </div>
 
@@ -78,7 +69,8 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="./nieuweFilm.php">Nieuwe Film</a></li>
             <li><a class="dropdown-item" href="./nieuweProduction.php">Nieuwe Productie</a></li>
-            <li><a class="dropdown-item" href="#">Zoeken</a></li>
+            <li><a class="dropdown-item" href="./zoeken.php">Zoeken Op Naam</a></li>
+            <li><a class="dropdown-item" href="./Titel.php">Zoeken Op Titel</a></li>
           </ul>
         </div>
     </section>

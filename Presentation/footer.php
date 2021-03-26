@@ -6,22 +6,22 @@ echo "<link rel='stylesheet' type='text/css' href='/presentation/css/headerfoote
 <footer class="footer" style="background-color: #9A1915;">
     <section class="container">
         <div class="row"> 
-            <div class="col"><h6>Watchlist by Casey &copy;</h6> 
+            <div class="col"><h6>MyMovieList by Casey &copy;</h6> 
                 <address>
-                    <i class="fa fa-envelope-o"> </i><a href="mailto:example@example.com"> mail us</a>.<br>
+                    <i class="fa fa-envelope-o"> </i> mail me: claeskim33@hotmail.com<br>
                     <i class="fa fa-location-arrow"> </i>
                     3583 Paal<br>
                     België  <br>
-                    <i class="fa fa-phone"></i>
-                    <a href=""> +32 13 00 00 00</a>
+                    <p><i class="fa fa-instagram"></i> Kim_cl37</p>
+                    
                 
                 </address>
             </div>
     
             <div class="col">
-                <h6>Wil je ons volgen?</h6>
-                <i class="volgen fa fa-facebook"></i>
-                <i class="volgen fa fa-instagram"></i>
+                <h6></h6>
+                <i></i>
+                <i></i>
             </div>
         </div>
     </section>

@@ -28,9 +28,8 @@ h1, h2, h3, h4, h5 {
     font-size: 0.8em;
 }
 
-.gekozenProductie {
+#gekozenProductie {
     font-style: italic;
-    color: darkolivegreen;
 }
 div table {
     font-style: normal;
@@ -89,7 +88,7 @@ div table {
     color: red;
 }
 .reviewMaken  a {
-    color: green;
+    color:darkolivegreen;
     font-weight: bold;
     font-size: 1.5em;
 }
@@ -188,6 +187,22 @@ table {
     background-position: center;
 }
 
+#mama {
+    color: red;
+    font-size: 1.3em;
+}
+#theo {
+    color: rgb(218, 203, 6);
+    font-size: 1.3em;
+}
+#papa {
+    color: blue;
+    font-size: 1.3em;
+}
+#leia {
+    color: rgb(228, 43, 74);
+    font-size: 1.3em;
+}
 
 /*LOGIN*/
 .registerLink {
@@ -198,3 +213,42 @@ table {
 a .registerLink {
     text-decoration: none;
 }
+
+
+/*STUDIOS*/
+.page-link {
+    color: black;
+}
+
+/*ZOEKEN TITEL*/
+.resultaat {
+    text-align: center;
+    border: darkolivegreen 2px solid;
+}
+.resultaat  a {
+  text-decoration: none;
+  color:darkolivegreen;
+  text-align: center;
+  font-size: 1.2em;
+
+}
+.terug {
+    color:darkolivegreen;
+}
+
+/* wishlist */
+
+#wishlist > h1 {
+    background-color: gray;
+    text-align: center;
+}
+ 
+.table-striped{
+    border: black 1px;
+
+}
+
+.verwijder {
+    color: red;
+}
+

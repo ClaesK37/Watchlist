@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 require_once __DIR__ . '/DBConfig.php';
 require_once __DIR__ . '/../entities/Production.php';
+
 use Exceptions\ProductionBestaatException;
 
 class ProductionDAO {
@@ -18,6 +19,36 @@ class ProductionDAO {
         }
         $dbh = null;
         return $lijst;
+    }
+
+    public function paginaVerdeling(): Array {
+        if (isset($_GET["page"]) && $_GET["page"]!="") {
+            $page = $_GET["page"];
+        } else {
+            $page = 1;
+        }
+
+        $totaalPerPagina = 8;
+        $offset = ($page-1) * $totaalPerPagina;
+        $sql2 = "select * from productions order by director limit $offset, $totaalPerPagina";
+        $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
+        $resultSet = $dbh->query($sql2);
+        $lijst = array();
+        foreach($resultSet as $rij) {
+            $production = new Production((int)$rij["productionId"], $rij["director"]);
+            array_push($lijst, $production);
+        }
+        $dbh = null;
+        return $lijst; 
+    }
+    
+    public function totaalPaginas() {
+        $sql = "select * from productions";
+        $dbh = new PDO(DBConfig::$DB_CONNSTRING,DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
+        $stmt = $dbh->query($sql);
+        $totaalRecords = $stmt->rowcount();
+        return $totaalRecords;
+  
     }
 
     public function getById(int $id) {
@@ -67,4 +98,6 @@ class ProductionDAO {
             return $production;
         }
     }
+
+   
 }
